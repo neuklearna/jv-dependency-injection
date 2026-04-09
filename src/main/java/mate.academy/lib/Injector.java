@@ -11,19 +11,20 @@ import mate.academy.service.impl.ProductParserImpl;
 import mate.academy.service.impl.ProductServiceImpl;
 
 public class Injector {
+
     private static final Injector injector = new Injector();
-
-    public static Injector getInjector() {
-        return injector;
-    }
-
-    private Map<Class<?>, Object> instances = new HashMap<>();
 
     private final Map<Class<?>, Class<?>> implementations = Map.of(
             FileReaderService.class, FileReaderServiceImpl.class,
             ProductParser.class, ProductParserImpl.class,
             ProductService.class, ProductServiceImpl.class
     );
+
+    private Map<Class<?>, Object> instances = new HashMap<>();
+
+    public static Injector getInjector() {
+        return injector;
+    }
 
     public Class<?> findImplementation(Class<?> interfaceClazz) {
         if (interfaceClazz.isInterface()) {
